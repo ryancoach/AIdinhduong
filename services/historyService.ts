@@ -16,10 +16,10 @@ export const getHistory = (): AnalysisHistoryItem[] => {
   return [];
 };
 
-export const saveHistory = (history: AnalysisHistoryItem[]): void => {
+export const saveHistory = (history: AnalysisHistoryItem[], limit: number): void => {
   try {
-    // Limit history to 50 items to not bloat localStorage
-    const limitedHistory = history.slice(0, 50);
+    // Limit history based on user settings
+    const limitedHistory = history.slice(0, limit);
     const historyJson = JSON.stringify(limitedHistory);
     localStorage.setItem(HISTORY_STORAGE_KEY, historyJson);
   } catch (error) {
